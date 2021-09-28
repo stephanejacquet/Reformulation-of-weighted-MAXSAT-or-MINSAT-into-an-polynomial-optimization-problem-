@@ -1,0 +1,1 @@
+# Reformulation-of-weighted-MAXSAT-or-MINSAT-into-an-polynomial-optimization-problem-

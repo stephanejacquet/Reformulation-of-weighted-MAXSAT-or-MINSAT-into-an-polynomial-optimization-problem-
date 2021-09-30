@@ -1,0 +1,33 @@
+#!/bin/bash
+
+
+cd ./WCNFToSolver
+FILENAME=Examples_weighted-maxsat.wcnf
+#make
+#./hello easy_unsatisfiable.cnf
+#./hello uf50-0896.cnf #Il est intéressant de regarder les 099 et 0710
+./hello $FILENAME
+
+cp simple.dat ../admb-12.3/examples/admb/simple/simple.dat
+cp $FILENAME ../SolverToWCNF/$FILENAME
+mv problem_name.txt ../SolverToWCNF
+
+cd ../admb-12.3/examples/admb/simple
+
+../../../admb simple.tpl
+
+./simple
+
+cat ./simple.par
+
+tail -1 simple.par >> resultat.txt
+
+mv resultat.txt ../../../../SolverToWCNF
+
+cd ../../../../SolverToWCNF
+
+#make
+
+./evaluate_cnf $FILENAME resultat.txt
+
+
